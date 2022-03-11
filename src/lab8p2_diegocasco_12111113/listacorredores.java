@@ -21,7 +21,7 @@ public class listacorredores {
     private ArrayList <Corredor> listacorredores=new ArrayList();
     private File Corredores = null;
 
-    private listacorredores (String path){
+    public listacorredores (String path){
         Corredores=new File(path);
     }
     

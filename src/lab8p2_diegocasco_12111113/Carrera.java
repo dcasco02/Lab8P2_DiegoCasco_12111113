@@ -4,7 +4,8 @@
  * and open the template in the editor.
  */
 package lab8p2_diegocasco_12111113;
-
+import java.awt.Color;
+import javax.swing.JColorChooser
 import javax.swing.JOptionPane;
 
 /**
@@ -226,14 +227,16 @@ public class Carrera extends javax.swing.JFrame {
         ap.setCorredor(c);
         ap.escribirArchivo();
         JOptionPane.showMessageDialog(this,
-                "Alumno guardado exitosamente");
+                "Corredor guardado exitosamente");
         JT_nombreCorredor.setText("");
         JT_Numidentificador.setText("");
     }//GEN-LAST:event_JB_GuardarActionPerformed
 
     private void JB_ColorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_ColorActionPerformed
         // TODO add your handling code here:
-        jColorChooser selector=new jColorChooser().show;
+        JColorChooser selector =new JColorChooser();
+        Color = jPunchUser.getselectcolor;
+        
     }//GEN-LAST:event_JB_ColorActionPerformed
 
     /**
