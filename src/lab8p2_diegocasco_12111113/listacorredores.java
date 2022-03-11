@@ -9,6 +9,6 @@ package lab8p2_diegocasco_12111113;
  *
  * @author dcasc
  */
-public class Pista {
+public class listacorredores {
     
 }

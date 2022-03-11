@@ -16,6 +16,8 @@ public class Lab8P2_DiegoCasco_12111113 {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        Carrera l = new Carrera();
+        l.setVisible(true);
     }
     
 }
