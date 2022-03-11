@@ -5,6 +5,8 @@
  */
 package lab8p2_diegocasco_12111113;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author dcasc
@@ -28,6 +30,7 @@ public class Carrera extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jColorChooser1 = new javax.swing.JColorChooser();
         jPanel1 = new javax.swing.JPanel();
         JB_Comenzar = new javax.swing.JButton();
         JB_Pausar = new javax.swing.JButton();
@@ -42,9 +45,9 @@ public class Carrera extends javax.swing.JFrame {
         JT_largo = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         JT_Numidentificador = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        JT_nombreCorredor = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        CB_TipoAuto = new javax.swing.JComboBox<>();
         JB_Color = new javax.swing.JButton();
         JB_Guardar = new javax.swing.JButton();
         JB_Reiniciar = new javax.swing.JButton();
@@ -80,11 +83,21 @@ public class Carrera extends javax.swing.JFrame {
 
         jLabel4.setText("Nombre Corredor");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "McQueen", "Convertible ", "Nascar" }));
+        CB_TipoAuto.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "McQueen", "Convertible ", "Nascar" }));
 
         JB_Color.setText("Color");
+        JB_Color.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JB_ColorActionPerformed(evt);
+            }
+        });
 
         JB_Guardar.setText("Guardar");
+        JB_Guardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JB_GuardarActionPerformed(evt);
+            }
+        });
 
         JB_Reiniciar.setText("Reiniciar");
 
@@ -128,7 +141,7 @@ public class Carrera extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(CB_TipoAuto, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(JB_Guardar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -137,7 +150,7 @@ public class Carrera extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(JT_nombreCorredor, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(114, 114, 114)))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(JB_Reiniciar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -177,10 +190,10 @@ public class Carrera extends javax.swing.JFrame {
                     .addComponent(JB_UsarPista)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel4)
-                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(JT_nombreCorredor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(CB_TipoAuto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(JB_Color)
                     .addComponent(JB_Reiniciar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -203,6 +216,25 @@ public class Carrera extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void JB_GuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_GuardarActionPerformed
+        // TODO add your handling code here:
+        Corredor c=new Corredor(JT_nombreCorredor.getText(),JT_Numidentificador.getText(),CB_TipoAuto.getSelectedItem().toString())
+)        
+        listacorredores ap = new listacorredores("./Corredores.cbm");
+        ap.cargarArchivo();
+        ap.setCorredor(c);
+        ap.escribirArchivo();
+        JOptionPane.showMessageDialog(this,
+                "Alumno guardado exitosamente");
+        JT_nombreCorredor.setText("");
+        JT_Numidentificador.setText("");
+    }//GEN-LAST:event_JB_GuardarActionPerformed
+
+    private void JB_ColorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_ColorActionPerformed
+        // TODO add your handling code here:
+        jColorChooser selector=new jColorChooser().show;
+    }//GEN-LAST:event_JB_ColorActionPerformed
 
     /**
      * @param args the command line arguments
@@ -240,6 +272,7 @@ public class Carrera extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> CB_TipoAuto;
     private javax.swing.JButton JB_Agregar;
     private javax.swing.JButton JB_Color;
     private javax.swing.JButton JB_Comenzar;
@@ -251,7 +284,8 @@ public class Carrera extends javax.swing.JFrame {
     private javax.swing.JTextField JT_NombrePista;
     private javax.swing.JTextField JT_Numidentificador;
     private javax.swing.JTextField JT_largo;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JTextField JT_nombreCorredor;
+    private javax.swing.JColorChooser jColorChooser1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -260,6 +294,5 @@ public class Carrera extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable2;
-    private javax.swing.JTextField jTextField2;
     // End of variables declaration//GEN-END:variables
 }
