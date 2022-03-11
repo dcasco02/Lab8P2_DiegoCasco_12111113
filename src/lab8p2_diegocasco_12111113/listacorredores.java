@@ -40,7 +40,7 @@ public class listacorredores {
     public void setCorredores(File Corredores) {
         this.Corredores = Corredores;
     }
-    public void setAlumno(Corredor c){
+    public void setCorredores(Corredor c){
         listacorredores.add(c);
     }
 
