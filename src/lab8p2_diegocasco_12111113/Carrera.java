@@ -263,14 +263,29 @@ public class Carrera extends javax.swing.JFrame {
             Corredor temp = (Corredor) CB_Corredores.getSelectedItem();
             if (temp != null) {
                 JT_Numidentificador.setText(temp.getIdentificador());
-                JT_Numidentificador.setText(temp.getNombreCorredor());
+                JT_nombreCorredor.setText(temp.getNombreCorredor());
                 
                 jTable2.setModel(new javax.swing.table.DefaultTableModel(
                         new Object[][]{},
                         new String[]{
-                            "Identificador", "Corredor","Distancia"
+                            "Identificador", "Corredor"
                         }
-                )               
+                ) {
+                    Class[] types = new Class[]{
+                        java.lang.String.class, java.lang.String.class
+                    };
+                    boolean[] canEdit = new boolean[]{
+                        false, false
+                    };
+
+                    public Class getColumnClass(int columnIndex) {
+                        return types[columnIndex];
+                    }
+
+                    public boolean isCellEditable(int rowIndex, int columnIndex) {
+                        return canEdit[columnIndex];
+                    }
+                });
             }//fin if
         }//fin changed
     }//GEN-LAST:event_CB_CorredoresItemStateChanged
