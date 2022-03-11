@@ -51,7 +51,7 @@
                       <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="0" attributes="0">
-                                  <Component id="jComboBox2" min="-2" pref="169" max="-2" attributes="0"/>
+                                  <Component id="CB_Corredores" min="-2" pref="169" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="JB_Agregar" min="-2" pref="89" max="-2" attributes="0"/>
                               </Group>
@@ -128,7 +128,7 @@
                   <Component id="jScrollPane2" min="-2" pref="169" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jComboBox2" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="CB_Corredores" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="JB_Agregar" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="JT_NombrePista" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -194,9 +194,9 @@
               <Properties>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                   <Table columnCount="3" rowCount="4">
-                    <Column editable="true" title="Identificador" type="java.lang.Object"/>
-                    <Column editable="true" title="Corredor" type="java.lang.Object"/>
-                    <Column editable="true" title="Distancia" type="java.lang.Object"/>
+                    <Column editable="true" title="Identificador" type="java.lang.Integer"/>
+                    <Column editable="true" title="Corredor" type="java.lang.String"/>
+                    <Column editable="true" title="Distancia" type="java.lang.Integer"/>
                   </Table>
                 </Property>
                 <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
@@ -225,12 +225,15 @@
             </Component>
           </SubComponents>
         </Container>
-        <Component class="javax.swing.JComboBox" name="jComboBox2">
+        <Component class="javax.swing.JComboBox" name="CB_Corredores">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="0"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="CB_CorredoresItemStateChanged"/>
+          </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>

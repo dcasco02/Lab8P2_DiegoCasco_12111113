@@ -5,8 +5,9 @@
  */
 package lab8p2_diegocasco_12111113;
 import java.awt.Color;
-import javax.swing.JColorChooser
+import javax.swing.JColorChooser;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -21,6 +22,7 @@ public class Carrera extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -38,7 +40,7 @@ public class Carrera extends javax.swing.JFrame {
         JP_Carrera = new javax.swing.JProgressBar();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
-        jComboBox2 = new javax.swing.JComboBox<>();
+        CB_Corredores = new javax.swing.JComboBox<>();
         JB_Agregar = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         JT_NombrePista = new javax.swing.JTextField();
@@ -70,8 +72,22 @@ public class Carrera extends javax.swing.JFrame {
             new String [] {
                 "Identificador", "Corredor", "Distancia"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.String.class, java.lang.Integer.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
         jScrollPane2.setViewportView(jTable2);
+
+        CB_Corredores.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                CB_CorredoresItemStateChanged(evt);
+            }
+        });
 
         JB_Agregar.setText("Agregar");
 
@@ -114,7 +130,7 @@ public class Carrera extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(CB_Corredores, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(JB_Agregar, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -171,7 +187,7 @@ public class Carrera extends javax.swing.JFrame {
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(CB_Corredores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(JB_Agregar)
                     .addComponent(jLabel2)
                     .addComponent(JT_NombrePista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -220,11 +236,10 @@ public class Carrera extends javax.swing.JFrame {
 
     private void JB_GuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_GuardarActionPerformed
         // TODO add your handling code here:
-        Corredor c=new Corredor(JT_nombreCorredor.getText(),JT_Numidentificador.getText(),CB_TipoAuto.getSelectedItem().toString())
-)        
+        Corredor c =new Corredor(JT_nombreCorredor.getText(),JT_Numidentificador.getText(),CB_TipoAuto.getSelectedItem().toString(),JB_Color.getForeground(),0);
         listacorredores ap = new listacorredores("./Corredores.cbm");
         ap.cargarArchivo();
-        ap.setCorredor(c);
+        ap.setCorredores(c);
         ap.escribirArchivo();
         JOptionPane.showMessageDialog(this,
                 "Corredor guardado exitosamente");
@@ -234,10 +249,31 @@ public class Carrera extends javax.swing.JFrame {
 
     private void JB_ColorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JB_ColorActionPerformed
         // TODO add your handling code here:
-        JColorChooser selector =new JColorChooser();
-        Color = jPunchUser.getselectcolor;
-        
+        JB_Color.setBackground(
+                JColorChooser.showDialog(
+                        this, "Seleccione un color", 
+                        Color.yellow)
+        );
+        JB_Color.getForeground();
     }//GEN-LAST:event_JB_ColorActionPerformed
+
+    private void CB_CorredoresItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_CB_CorredoresItemStateChanged
+        // TODO add your handling code here:
+        if (evt.getStateChange() == 1) {
+            Corredor temp = (Corredor) CB_Corredores.getSelectedItem();
+            if (temp != null) {
+                JT_Numidentificador.setText(temp.getIdentificador());
+                JT_Numidentificador.setText(temp.getNombreCorredor());
+                
+                jTable2.setModel(new javax.swing.table.DefaultTableModel(
+                        new Object[][]{},
+                        new String[]{
+                            "Identificador", "Corredor","Distancia"
+                        }
+                )               
+            }//fin if
+        }//fin changed
+    }//GEN-LAST:event_CB_CorredoresItemStateChanged
 
     /**
      * @param args the command line arguments
@@ -275,6 +311,7 @@ public class Carrera extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> CB_Corredores;
     private javax.swing.JComboBox<String> CB_TipoAuto;
     private javax.swing.JButton JB_Agregar;
     private javax.swing.JButton JB_Color;
@@ -289,7 +326,6 @@ public class Carrera extends javax.swing.JFrame {
     private javax.swing.JTextField JT_largo;
     private javax.swing.JTextField JT_nombreCorredor;
     private javax.swing.JColorChooser jColorChooser1;
-    private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
